@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
+class MainViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()

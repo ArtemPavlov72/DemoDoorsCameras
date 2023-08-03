@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		AC74A33D2A7BA012000A9112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A33C2A7BA012000A9112 /* AppDelegate.swift */; };
 		AC74A33F2A7BA012000A9112 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */; };
-		AC74A3412A7BA012000A9112 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3402A7BA012000A9112 /* ViewController.swift */; };
+		AC74A3412A7BA012000A9112 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3402A7BA012000A9112 /* MainViewController.swift */; };
 		AC74A3442A7BA012000A9112 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3422A7BA012000A9112 /* Main.storyboard */; };
 		AC74A3462A7BA013000A9112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3452A7BA013000A9112 /* Assets.xcassets */; };
 		AC74A3492A7BA013000A9112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */; };
+		AC74A3512A7BB590000A9112 /* Cameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3502A7BB590000A9112 /* Cameras.swift */; };
+		AC74A3572A7BC09F000A9112 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3562A7BC09F000A9112 /* Doors.swift */; };
 		C95586E8241E2AEC53D044C9 /* Pods_DemoDoorsCameras.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,11 +24,13 @@
 		AC74A3392A7BA012000A9112 /* DemoDoorsCameras.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoDoorsCameras.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC74A33C2A7BA012000A9112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AC74A3402A7BA012000A9112 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC74A3402A7BA012000A9112 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AC74A3432A7BA012000A9112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC74A3452A7BA013000A9112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC74A3482A7BA013000A9112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC74A34A2A7BA013000A9112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC74A3502A7BB590000A9112 /* Cameras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameras.swift; sourceTree = "<group>"; };
+		AC74A3562A7BC09F000A9112 /* Doors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
 		CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.debug.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,15 +75,49 @@
 		AC74A33B2A7BA012000A9112 /* DemoDoorsCameras */ = {
 			isa = PBXGroup;
 			children = (
-				AC74A33C2A7BA012000A9112 /* AppDelegate.swift */,
-				AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */,
-				AC74A3402A7BA012000A9112 /* ViewController.swift */,
-				AC74A3422A7BA012000A9112 /* Main.storyboard */,
-				AC74A3452A7BA013000A9112 /* Assets.xcassets */,
-				AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */,
-				AC74A34A2A7BA013000A9112 /* Info.plist */,
+				AC74A3542A7BB89F000A9112 /* ViewControllers */,
+				AC74A3522A7BB595000A9112 /* Models */,
+				AC74A3532A7BB898000A9112 /* App */,
+				AC74A3552A7BB8DF000A9112 /* Resources */,
 			);
 			path = DemoDoorsCameras;
+			sourceTree = "<group>";
+		};
+		AC74A3522A7BB595000A9112 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3502A7BB590000A9112 /* Cameras.swift */,
+				AC74A3562A7BC09F000A9112 /* Doors.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AC74A3532A7BB898000A9112 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */,
+				AC74A33C2A7BA012000A9112 /* AppDelegate.swift */,
+				AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */,
+				AC74A34A2A7BA013000A9112 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AC74A3542A7BB89F000A9112 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3402A7BA012000A9112 /* MainViewController.swift */,
+				AC74A3422A7BA012000A9112 /* Main.storyboard */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AC74A3552A7BB8DF000A9112 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3452A7BA013000A9112 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		F1C4654C1B84A6BBE1A10960 /* Pods */ = {
@@ -88,7 +126,6 @@
 				CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */,
 				A36919E60BC2AB1195B8F633 /* Pods-DemoDoorsCameras.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,8 +244,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC74A3412A7BA012000A9112 /* ViewController.swift in Sources */,
+				AC74A3512A7BB590000A9112 /* Cameras.swift in Sources */,
+				AC74A3412A7BA012000A9112 /* MainViewController.swift in Sources */,
 				AC74A33D2A7BA012000A9112 /* AppDelegate.swift in Sources */,
+				AC74A3572A7BC09F000A9112 /* Doors.swift in Sources */,
 				AC74A33F2A7BA012000A9112 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +398,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QQ7NB58NL6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DemoDoorsCameras/Info.plist;
+				INFOPLIST_FILE = DemoDoorsCameras/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -388,7 +427,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QQ7NB58NL6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DemoDoorsCameras/Info.plist;
+				INFOPLIST_FILE = DemoDoorsCameras/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
