@@ -13,9 +13,12 @@
 		AC74A3442A7BA012000A9112 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3422A7BA012000A9112 /* Main.storyboard */; };
 		AC74A3462A7BA013000A9112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3452A7BA013000A9112 /* Assets.xcassets */; };
 		AC74A3492A7BA013000A9112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */; };
+		C95586E8241E2AEC53D044C9 /* Pods_DemoDoorsCameras.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoDoorsCameras.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A36919E60BC2AB1195B8F633 /* Pods-DemoDoorsCameras.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.release.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.release.xcconfig"; sourceTree = "<group>"; };
 		AC74A3392A7BA012000A9112 /* DemoDoorsCameras.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoDoorsCameras.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC74A33C2A7BA012000A9112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		AC74A3452A7BA013000A9112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC74A3482A7BA013000A9112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC74A34A2A7BA013000A9112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.debug.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95586E8241E2AEC53D044C9 /* Pods_DemoDoorsCameras.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37987A19213E46BEE2E27650 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AC74A3302A7BA012000A9112 = {
 			isa = PBXGroup;
 			children = (
 				AC74A33B2A7BA012000A9112 /* DemoDoorsCameras */,
 				AC74A33A2A7BA012000A9112 /* Products */,
+				F1C4654C1B84A6BBE1A10960 /* Pods */,
+				37987A19213E46BEE2E27650 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = DemoDoorsCameras;
 			sourceTree = "<group>";
 		};
+		F1C4654C1B84A6BBE1A10960 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */,
+				A36919E60BC2AB1195B8F633 /* Pods-DemoDoorsCameras.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC74A34D2A7BA013000A9112 /* Build configuration list for PBXNativeTarget "DemoDoorsCameras" */;
 			buildPhases = (
+				3546555A00AD484B428F427F /* [CP] Check Pods Manifest.lock */,
 				AC74A3352A7BA012000A9112 /* Sources */,
 				AC74A3362A7BA012000A9112 /* Frameworks */,
 				AC74A3372A7BA012000A9112 /* Resources */,
+				BA0D900E67EEAFB695CEBC47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3546555A00AD484B428F427F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DemoDoorsCameras-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA0D900E67EEAFB695CEBC47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AC74A3352A7BA012000A9112 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		AC74A34E2A7BA013000A9112 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		AC74A34F2A7BA013000A9112 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A36919E60BC2AB1195B8F633 /* Pods-DemoDoorsCameras.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
