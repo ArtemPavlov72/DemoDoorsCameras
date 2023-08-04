@@ -8,11 +8,16 @@
 import UIKit
 import RealmSwift
 
+protocol MainViewControllerDelegate {
+    func didSelectCategory(_ name: String)
+}
+
 class MainViewController: UIViewController {
 
   // MARK: - Private Properties
 
   private var cameraData: Camera?
+  private var categories: [Category] = []
   private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
   private var collectionView: UICollectionView!
 
@@ -21,6 +26,7 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupNavBar()
+    getCategoryData()
     setupCollectionView()
     loadData()
   }
@@ -32,12 +38,18 @@ class MainViewController: UIViewController {
     collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     view.addSubview(collectionView)
     collectionView.backgroundColor = .systemGray5
+
+    collectionView.register(Header.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Header.reuseId)
     collectionView.register(CameraCell.self, forCellWithReuseIdentifier: CameraCell.reuseId)
   }
 
   private func setupNavBar() {
-    title = "LALA"
+    title = "Мой дом"
     navigationItem.largeTitleDisplayMode = .never
+  }
+
+  private func getCategoryData() {
+    let _ = DataManager.shared.getFakeCategoryData().compactMap { categories.append(Category(categoryName: $0)) }
   }
 
   private func loadData() {
@@ -74,6 +86,16 @@ class MainViewController: UIViewController {
         return configure(CameraCell.self, with: camera, for: indexPath)
       }
     }
+
+    dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+        guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.reuseId, for: indexPath) as? Header else { return Header() }
+        sectionHeader.categories = Array(NSOrderedSet(array: self.categories.compactMap {
+          $0.categoryName
+        } )) as? [String] ?? []
+        sectionHeader.delegate = self
+        return sectionHeader
+    }
+
     dataSource?.apply(generateSnapshot(), animatingDifferences: true)
   }
 
@@ -119,12 +141,34 @@ class MainViewController: UIViewController {
     let layoutSection = NSCollectionLayoutSection(group: group)
     layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
 
+    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+
+    let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+
+    header.pinToVisibleBounds = true
+    layoutSection.boundarySupplementaryItems = [header]
+
     return layoutSection
   }
 }
+
+//MARK: - MainViewControllerDelegate
 
 private extension MainViewController {
   enum Section: String, Hashable, CaseIterable {
     case mainData
   }
+}
+
+//MARK: - MainViewControllerDelegate
+
+extension MainViewController: MainViewControllerDelegate {
+    func didSelectCategory(_ name: String) {
+
+//        let indexOfFirstElementOfCategory = products.firstIndex(where: { $0.category == name } )
+//        guard let index = indexOfFirstElementOfCategory else {return}
+//
+//        let indexPath = IndexPath(item: index, section: 1)
+//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+    }
 }

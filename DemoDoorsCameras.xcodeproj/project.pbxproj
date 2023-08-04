@@ -17,6 +17,10 @@
 		AC74A35D2A7C397A000A9112 /* CameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A35C2A7C397A000A9112 /* CameraCell.swift */; };
 		AC74A3602A7CE48E000A9112 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */; };
 		AC74A3622A7D0055000A9112 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */; };
+		AC74A3642A7D1473000A9112 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3632A7D1473000A9112 /* HeaderCell.swift */; };
+		AC74A3662A7D1510000A9112 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3652A7D1510000A9112 /* Category.swift */; };
+		AC74A3682A7D1551000A9112 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3672A7D1551000A9112 /* DataManager.swift */; };
+		AC74A36A2A7D195E000A9112 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3692A7D195E000A9112 /* Header.swift */; };
 		C95586E8241E2AEC53D044C9 /* Pods_DemoDoorsCameras.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,10 @@
 		AC74A35C2A7C397A000A9112 /* CameraCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCell.swift; sourceTree = "<group>"; };
 		AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
 		AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
+		AC74A3632A7D1473000A9112 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		AC74A3652A7D1510000A9112 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		AC74A3672A7D1551000A9112 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		AC74A3692A7D195E000A9112 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.debug.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +103,7 @@
 			children = (
 				AC74A3502A7BB590000A9112 /* Camera.swift */,
 				AC74A3562A7BC09F000A9112 /* Door.swift */,
+				AC74A3652A7D1510000A9112 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				AC74A3592A7C37AA000A9112 /* NetworkManager.swift */,
+				AC74A3672A7D1551000A9112 /* DataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -136,6 +146,7 @@
 		AC74A35B2A7C395D000A9112 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC74A36B2A7D2CAD000A9112 /* Header */,
 				AC74A35C2A7C397A000A9112 /* CameraCell.swift */,
 				AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */,
 			);
@@ -148,6 +159,15 @@
 				AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AC74A36B2A7D2CAD000A9112 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3692A7D195E000A9112 /* Header.swift */,
+				AC74A3632A7D1473000A9112 /* HeaderCell.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		F1C4654C1B84A6BBE1A10960 /* Pods */ = {
@@ -274,11 +294,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC74A35A2A7C37AA000A9112 /* NetworkManager.swift in Sources */,
+				AC74A3662A7D1510000A9112 /* Category.swift in Sources */,
 				AC74A3622A7D0055000A9112 /* SelfConfiguringCell.swift in Sources */,
 				AC74A3602A7CE48E000A9112 /* UICollectionViewCell.swift in Sources */,
+				AC74A36A2A7D195E000A9112 /* Header.swift in Sources */,
 				AC74A35D2A7C397A000A9112 /* CameraCell.swift in Sources */,
+				AC74A3642A7D1473000A9112 /* HeaderCell.swift in Sources */,
 				AC74A3512A7BB590000A9112 /* Camera.swift in Sources */,
 				AC74A3412A7BA012000A9112 /* MainViewController.swift in Sources */,
+				AC74A3682A7D1551000A9112 /* DataManager.swift in Sources */,
 				AC74A33D2A7BA012000A9112 /* AppDelegate.swift in Sources */,
 				AC74A3572A7BC09F000A9112 /* Door.swift in Sources */,
 			);
