@@ -9,15 +9,15 @@ import RealmSwift
 
 //MARK: - Data transfer objet
 
-struct Door: Codable {
+struct Door: Codable, Hashable {
   let success: Bool
-  let data: DoorInfo?
+  let data: [DoorInfo]
 }
 
-struct DoorInfo: Codable {
+struct DoorInfo: Codable, Hashable {
   let name: String
   let snapshot: String?
-  let room: String
+  let room: String?
   let id: Int
   let favorites: Bool
 }

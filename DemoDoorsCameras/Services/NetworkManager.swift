@@ -17,7 +17,7 @@ class NetworkManager {
   static let shared = NetworkManager()
   private init() {}
 
-  func fetchData(from url: String, completion: @escaping(Result<Camera, NetworkError>) -> Void) {
+  func fetchData<T: Decodable>(dataType: T.Type, from url: String, completion: @escaping(Result<T, NetworkError>) -> Void) {
     guard let url = URL(string: url) else {
       completion(.failure(.invalidURL))
       return
@@ -31,9 +31,9 @@ class NetworkManager {
       }
 
       do {
-        let camera = try JSONDecoder().decode(Camera.self, from: data)
+        let type = try JSONDecoder().decode(T.self, from: data)
         DispatchQueue.main.async {
-          completion(.success(camera))
+          completion(.success(type))
         }
       } catch {
         completion(.failure(.decodingError))

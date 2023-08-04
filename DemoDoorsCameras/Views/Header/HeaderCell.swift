@@ -10,14 +10,16 @@ import UIKit
 class HeaderCell: UICollectionViewCell {
 
   //MARK: - Static Properties
+
   static let reuseId: String = "header"
 
   //MARK: - Public Properties
+
   private let categoryLabel = UILabel()
   private let bottomView = UIView()
 
-
   //MARK: - Cell Init
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupElements(categoryLabel, bottomView)
@@ -30,6 +32,7 @@ class HeaderCell: UICollectionViewCell {
   }
 
   //MARK: - Public Methods
+
   func configureCell(with category: String) {
     categoryLabel.text = category
   }
@@ -44,6 +47,7 @@ class HeaderCell: UICollectionViewCell {
 
 
   // MARK: - Setup Constraints
+  
   private func setupConstraints() {
     NSLayoutConstraint.activate([
     categoryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),

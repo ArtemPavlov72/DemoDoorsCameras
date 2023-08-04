@@ -51,19 +51,19 @@ class Header: UICollectionReusableView {
     private func createSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
         let layoutSection = NSCollectionLayoutSection(group: group)
         layoutSection.orthogonalScrollingBehavior = .continuous
-        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
+
         return layoutSection
     }
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension Header: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         categories.count
@@ -84,7 +84,7 @@ extension Header: UICollectionViewDataSource {
 
 extension Header: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      delegate?.didSelectCategory(categories[indexPath.item])
+      delegate?.didSelectCategory(indexPath.item)
       selectedCategory = indexPath.item
       collectionView.reloadData()
      }

@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 protocol MainViewControllerDelegate {
-    func didSelectCategory(_ name: String)
+    func didSelectCategory(_ index: Int)
 }
 
 class MainViewController: UIViewController {
@@ -17,6 +17,8 @@ class MainViewController: UIViewController {
   // MARK: - Private Properties
 
   private var cameraData: Camera?
+  private var doorData: Door?
+  private var categoryIndex = 0
   private var categories: [Category] = []
   private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
   private var collectionView: UICollectionView!
@@ -28,7 +30,7 @@ class MainViewController: UIViewController {
     setupNavBar()
     getCategoryData()
     setupCollectionView()
-    loadData()
+    loadSelectedCategory(catery: categoryIndex)
   }
 
   //MARK: - Private Methods
@@ -41,6 +43,7 @@ class MainViewController: UIViewController {
 
     collectionView.register(Header.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Header.reuseId)
     collectionView.register(CameraCell.self, forCellWithReuseIdentifier: CameraCell.reuseId)
+    collectionView.register(DoorCell.self, forCellWithReuseIdentifier: DoorCell.reuseId)
   }
 
   private func setupNavBar() {
@@ -49,14 +52,34 @@ class MainViewController: UIViewController {
   }
 
   private func getCategoryData() {
-    let _ = DataManager.shared.getFakeCategoryData().compactMap { categories.append(Category(categoryName: $0)) }
+    let _ = DataManager.shared.createFakeCategoryData().compactMap { categories.append(Category(categoryName: $0)) }
   }
 
-  private func loadData() {
-    NetworkManager.shared.fetchData(from: "http://cars.cprogroup.ru/api/rubetek/cameras/", completion: { result in
+  private func loadSelectedCategory(catery: Int) {
+    if categoryIndex == 0 {
+      loadCameraData()
+    } else {
+      loadDoorData()
+    }
+  }
+
+  private func loadCameraData() {
+    NetworkManager.shared.fetchData(dataType: Camera.self, from: "http://cars.cprogroup.ru/api/rubetek/cameras/", completion: { result in
       switch result {
       case .success(let camera):
         self.cameraData = camera
+        self.createDataSource()
+      case .failure(let error):
+        print(error)
+      }
+    })
+  }
+
+  private func loadDoorData() {
+    NetworkManager.shared.fetchData(dataType: Door.self, from: "http://cars.cprogroup.ru/api/rubetek/doors/", completion: { result in
+      switch result {
+      case .success(let door):
+        self.doorData = door
         self.createDataSource()
       case .failure(let error):
         print(error)
@@ -82,8 +105,13 @@ class MainViewController: UIViewController {
 
       switch sections {
       case .mainData:
-        let camera = cameraData?.data?.cameras[indexPath.row]
-        return configure(CameraCell.self, with: camera, for: indexPath)
+        if categoryIndex == 0 {
+          let camera = cameraData?.data?.cameras[indexPath.row]
+          return configure(CameraCell.self, with: camera, for: indexPath)
+        } else {
+          let door = doorData?.data[indexPath.row]
+          return configure(DoorCell.self, with: door, for: indexPath)
+        }
       }
     }
 
@@ -103,7 +131,11 @@ class MainViewController: UIViewController {
     var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
 
     snapshot.appendSections([Section.mainData])
-    snapshot.appendItems(cameraData?.data?.cameras ?? [], toSection: .mainData)
+    if categoryIndex == 0 {
+      snapshot.appendItems(cameraData?.data?.cameras ?? [], toSection: .mainData)
+    } else {
+      snapshot.appendItems(doorData?.data ?? [], toSection: .mainData)
+    }
 
     return snapshot
   }
@@ -163,12 +195,8 @@ private extension MainViewController {
 //MARK: - MainViewControllerDelegate
 
 extension MainViewController: MainViewControllerDelegate {
-    func didSelectCategory(_ name: String) {
-
-//        let indexOfFirstElementOfCategory = products.firstIndex(where: { $0.category == name } )
-//        guard let index = indexOfFirstElementOfCategory else {return}
-//
-//        let indexPath = IndexPath(item: index, section: 1)
-//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+    func didSelectCategory(_ index: Int) {
+      categoryIndex = index
+      loadSelectedCategory(catery: index)
     }
 }

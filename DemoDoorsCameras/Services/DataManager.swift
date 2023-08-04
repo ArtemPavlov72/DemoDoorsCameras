@@ -12,7 +12,8 @@ class DataManager {
   private init() {}
 
   // MARK: - Category Data
-  func getFakeCategoryData() -> [String] {
+
+  func createFakeCategoryData() -> [String] {
     return ["Камеры", "Двери"]
   }
 }
