@@ -1,5 +1,5 @@
 //
-//  Cameras.swift
+//  Camera.swift
 //  DemoDoorsCameras
 //
 //  Created by Артем Павлов on 03.08.2023.
@@ -9,21 +9,21 @@ import RealmSwift
 
 //MARK: - Data transfer objet
 
-struct Camera: Codable {
+struct Camera: Codable, Hashable {
   let success: Bool
   let data: CameraData?
 }
 
-struct CameraData: Codable {
+struct CameraData: Codable, Hashable {
   let room: [String]
-  let cameras: CameraInfo
+  let cameras: [CameraInfo]
 }
 
-class CameraInfo: Codable {
+struct CameraInfo: Codable, Hashable {
   let name: String
   let snapshot: String
-  let room: String
-  let id: Int
+  let room: String?
+  let id: Float
   let favorites: Bool
   let rec: Bool?
 }

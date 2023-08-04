@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		AC74A33D2A7BA012000A9112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A33C2A7BA012000A9112 /* AppDelegate.swift */; };
-		AC74A33F2A7BA012000A9112 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */; };
 		AC74A3412A7BA012000A9112 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3402A7BA012000A9112 /* MainViewController.swift */; };
-		AC74A3442A7BA012000A9112 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3422A7BA012000A9112 /* Main.storyboard */; };
 		AC74A3462A7BA013000A9112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3452A7BA013000A9112 /* Assets.xcassets */; };
 		AC74A3492A7BA013000A9112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */; };
-		AC74A3512A7BB590000A9112 /* Cameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3502A7BB590000A9112 /* Cameras.swift */; };
-		AC74A3572A7BC09F000A9112 /* Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3562A7BC09F000A9112 /* Doors.swift */; };
+		AC74A3512A7BB590000A9112 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3502A7BB590000A9112 /* Camera.swift */; };
+		AC74A3572A7BC09F000A9112 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3562A7BC09F000A9112 /* Door.swift */; };
+		AC74A35A2A7C37AA000A9112 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3592A7C37AA000A9112 /* NetworkManager.swift */; };
+		AC74A35D2A7C397A000A9112 /* CameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A35C2A7C397A000A9112 /* CameraCell.swift */; };
+		AC74A3602A7CE48E000A9112 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */; };
+		AC74A3622A7D0055000A9112 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */; };
 		C95586E8241E2AEC53D044C9 /* Pods_DemoDoorsCameras.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CE847F9F557265B1DB234E /* Pods_DemoDoorsCameras.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,14 +25,16 @@
 		A36919E60BC2AB1195B8F633 /* Pods-DemoDoorsCameras.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.release.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.release.xcconfig"; sourceTree = "<group>"; };
 		AC74A3392A7BA012000A9112 /* DemoDoorsCameras.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoDoorsCameras.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC74A33C2A7BA012000A9112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC74A3402A7BA012000A9112 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		AC74A3432A7BA012000A9112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC74A3452A7BA013000A9112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC74A3482A7BA013000A9112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC74A34A2A7BA013000A9112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC74A3502A7BB590000A9112 /* Cameras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameras.swift; sourceTree = "<group>"; };
-		AC74A3562A7BC09F000A9112 /* Doors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doors.swift; sourceTree = "<group>"; };
+		AC74A3502A7BB590000A9112 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		AC74A3562A7BC09F000A9112 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
+		AC74A3592A7C37AA000A9112 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AC74A35C2A7C397A000A9112 /* CameraCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCell.swift; sourceTree = "<group>"; };
+		AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
+		AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
 		CE8B563E1D8BD33D082404F5 /* Pods-DemoDoorsCameras.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoDoorsCameras.debug.xcconfig"; path = "Target Support Files/Pods-DemoDoorsCameras/Pods-DemoDoorsCameras.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +80,10 @@
 			isa = PBXGroup;
 			children = (
 				AC74A3542A7BB89F000A9112 /* ViewControllers */,
+				AC74A35B2A7C395D000A9112 /* Views */,
 				AC74A3522A7BB595000A9112 /* Models */,
+				AC74A35E2A7CE477000A9112 /* Extensions */,
+				AC74A3582A7C378C000A9112 /* Services */,
 				AC74A3532A7BB898000A9112 /* App */,
 				AC74A3552A7BB8DF000A9112 /* Resources */,
 			);
@@ -86,8 +93,8 @@
 		AC74A3522A7BB595000A9112 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AC74A3502A7BB590000A9112 /* Cameras.swift */,
-				AC74A3562A7BC09F000A9112 /* Doors.swift */,
+				AC74A3502A7BB590000A9112 /* Camera.swift */,
+				AC74A3562A7BC09F000A9112 /* Door.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -97,7 +104,6 @@
 			children = (
 				AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */,
 				AC74A33C2A7BA012000A9112 /* AppDelegate.swift */,
-				AC74A33E2A7BA012000A9112 /* SceneDelegate.swift */,
 				AC74A34A2A7BA013000A9112 /* Info.plist */,
 			);
 			path = App;
@@ -107,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				AC74A3402A7BA012000A9112 /* MainViewController.swift */,
-				AC74A3422A7BA012000A9112 /* Main.storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -118,6 +123,31 @@
 				AC74A3452A7BA013000A9112 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC74A3582A7C378C000A9112 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A3592A7C37AA000A9112 /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AC74A35B2A7C395D000A9112 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A35C2A7C397A000A9112 /* CameraCell.swift */,
+				AC74A3612A7D0055000A9112 /* SelfConfiguringCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC74A35E2A7CE477000A9112 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC74A35F2A7CE48E000A9112 /* UICollectionViewCell.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F1C4654C1B84A6BBE1A10960 /* Pods */ = {
@@ -191,7 +221,6 @@
 			files = (
 				AC74A3492A7BA013000A9112 /* LaunchScreen.storyboard in Resources */,
 				AC74A3462A7BA013000A9112 /* Assets.xcassets in Resources */,
-				AC74A3442A7BA012000A9112 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,25 +273,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC74A3512A7BB590000A9112 /* Cameras.swift in Sources */,
+				AC74A35A2A7C37AA000A9112 /* NetworkManager.swift in Sources */,
+				AC74A3622A7D0055000A9112 /* SelfConfiguringCell.swift in Sources */,
+				AC74A3602A7CE48E000A9112 /* UICollectionViewCell.swift in Sources */,
+				AC74A35D2A7C397A000A9112 /* CameraCell.swift in Sources */,
+				AC74A3512A7BB590000A9112 /* Camera.swift in Sources */,
 				AC74A3412A7BA012000A9112 /* MainViewController.swift in Sources */,
 				AC74A33D2A7BA012000A9112 /* AppDelegate.swift in Sources */,
-				AC74A3572A7BC09F000A9112 /* Doors.swift in Sources */,
-				AC74A33F2A7BA012000A9112 /* SceneDelegate.swift in Sources */,
+				AC74A3572A7BC09F000A9112 /* Door.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AC74A3422A7BA012000A9112 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC74A3432A7BA012000A9112 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AC74A3472A7BA013000A9112 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -401,7 +425,6 @@
 				INFOPLIST_FILE = DemoDoorsCameras/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -430,7 +453,6 @@
 				INFOPLIST_FILE = DemoDoorsCameras/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
