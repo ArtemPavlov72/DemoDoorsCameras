@@ -50,7 +50,7 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
   //MARK: - Configure
 
   func configure(with data: Any) {
-    guard let data = data as? DoorInfo else { return }
+    guard let data = data as? RealmDoorInfo else { return }
     getImage(from: data.snapshot)
     doorName.text = data.name
     lockImage.image = UIImage(named: "lockImage")
@@ -74,7 +74,7 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
       backgroundColorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
       backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
-      cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor, constant: 0),
+      cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
 

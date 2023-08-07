@@ -24,15 +24,10 @@ struct DoorInfo: Codable, Hashable {
 
 //MARK: - Realm models
 
-class RealmDoor: Object {
-  @Persisted var success: Bool
-  @Persisted var data = List<RealmDoorInfo>()
-}
-
 class RealmDoorInfo: Object {
   @Persisted var name: String
   @Persisted var snapshot: String?
-  @Persisted var room: String
+  @Persisted var room: String?
   @Persisted var id: Int
   @Persisted var favorites: Bool
 }

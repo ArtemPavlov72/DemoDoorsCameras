@@ -49,7 +49,7 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
   //MARK: - Configure
 
   func configure(with data: Any) {
-    guard let data = data as? CameraInfo else { return }
+    guard let data = data as? RealmCameraInfo else { return }
     getImage(from: data.snapshot)
     cameraName.text = data.name
   }
@@ -72,7 +72,7 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
       backgroundColorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
       backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
-      cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor, constant: 0),
+      cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
 
