@@ -2,7 +2,7 @@
 //  DoorCell.swift
 //  DemoDoorsCameras
 //
-//  Created by Артем Павлов on 04.08.2023.
+//  Created by Artem Pavlov on 04.08.2023.
 //
 
 import UIKit
@@ -18,8 +18,8 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
   private let doorName = UILabel()
   private let lockImage = UIImageView()
 
-  private lazy var cameraImage: UIImageView = {
-    let view = UIImageView()
+  private lazy var cameraImage: ImageView = {
+    let view = ImageView()
     view.contentMode = .scaleAspectFill
     view.clipsToBounds = true
     view.layer.cornerRadius = 15
@@ -51,18 +51,9 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
 
   func configure(with data: Any) {
     guard let data = data as? RealmDoorInfo else { return }
-    getImage(from: data.snapshot)
     doorName.text = data.name
     lockImage.image = UIImage(named: "lockImage")
-  }
-
-  private func getImage(from url: String?) {
-    DispatchQueue.global().async {
-      guard let imageData = ImageManager.shared.loadImage(from: url) else {return}
-      DispatchQueue.main.async {
-        self.cameraImage.image = UIImage(data: imageData)
-      }
-    }
+    cameraImage.fetchImage(from: data.snapshot ?? "")
   }
 
   // MARK: - Setup Constraints
@@ -77,16 +68,15 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
       cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
+      cameraImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
 
-      doorName.topAnchor.constraint(equalTo: cameraImage.bottomAnchor, constant: 20),
       doorName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       doorName.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20),
 
       lockImage.heightAnchor.constraint(equalToConstant: 30),
       lockImage.widthAnchor.constraint(equalToConstant: 30),
-      lockImage.topAnchor.constraint(equalTo: cameraImage.bottomAnchor, constant: 20),
       lockImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16),
-      lockImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -30),
+      lockImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20),
       ])
   }
 }

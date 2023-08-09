@@ -17,8 +17,8 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
 
   private let cameraName = UILabel()
 
-  private lazy var cameraImage: UIImageView = {
-    let view = UIImageView()
+  private lazy var cameraImage: ImageView = {
+    let view = ImageView()
     view.contentMode = .scaleAspectFill
     view.clipsToBounds = true
     view.layer.cornerRadius = 15
@@ -50,7 +50,8 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
 
   func configure(with data: Any) {
     guard let data = data as? RealmCameraInfo else { return }
-    getImage(from: data.snapshot)
+    cameraImage.fetchImage(from: data.snapshot)
+   // getImage(from: data.snapshot)
     cameraName.text = data.name
   }
 
@@ -75,8 +76,8 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
       cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
+      cameraImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
 
-      cameraName.topAnchor.constraint(equalTo: cameraImage.bottomAnchor, constant: 20),
       cameraName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       cameraName.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16),
       cameraName.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20)

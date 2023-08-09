@@ -131,6 +131,8 @@ class MainViewController: UIViewController {
     let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
       let section = Section.allCases[sectionIndex]
 
+
+
       switch section {
       case .mainData:
         return self.createMainSection()
@@ -146,11 +148,11 @@ class MainViewController: UIViewController {
 
   private func createMainSection() -> NSCollectionLayoutSection {
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                          heightDimension: .estimated(60))
+                                          heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                           heightDimension: .estimated(60))
+                                           heightDimension: .fractionalHeight(0.5))
     let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
                                                  subitems: [item])
     group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
