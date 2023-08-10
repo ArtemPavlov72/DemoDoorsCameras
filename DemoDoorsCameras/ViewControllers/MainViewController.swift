@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  DemoDoorsCameras
 //
-//  Created by Артем Павлов on 03.08.2023.
+//  Created by Artem Pavlov on 03.08.2023.
 //
 
 import UIKit
@@ -16,8 +16,6 @@ class MainViewController: UIViewController {
 
   // MARK: - Private Properties
 
- // private var cameraData: Camera?
-  //  private var doorData: Door?
   private var realmCamerasResults: Results<RealmCameraInfo>?
   private var realmDoorsResults: Results<RealmDoorInfo>?
   private var categoryIndex = 0
@@ -128,46 +126,26 @@ class MainViewController: UIViewController {
   // MARK: - Setup Layout
 
   private func createCompositionalLayout() -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-      let section = Section.allCases[sectionIndex]
 
+    var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+    listConfiguration.headerMode = .supplementary
+    listConfiguration.trailingSwipeActionsConfigurationProvider = { indexPath in
 
+      let editAction = UIContextualAction(style: .normal, title: "Edit") { _, _, isDone in
+        if self.categoryIndex == 0 {
+          let camera = self.realmCamerasResults?[indexPath.row]
+          self.showAlert(camera: camera) {
 
-      switch section {
-      case .mainData:
-        return self.createMainSection()
+          }
+          isDone(true)
+        }
       }
+      return UISwipeActionsConfiguration(actions: [editAction])
     }
 
-    let config = UICollectionViewCompositionalLayoutConfiguration()
-    config.interSectionSpacing = 8
-    layout.configuration = config
+    let listLayout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
 
-    return layout
-  }
-
-  private func createMainSection() -> NSCollectionLayoutSection {
-    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                          heightDimension: .fractionalHeight(1))
-    let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                           heightDimension: .fractionalHeight(0.5))
-    let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
-                                                 subitems: [item])
-    group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
-
-    let layoutSection = NSCollectionLayoutSection(group: group)
-    layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 0, trailing: 16)
-
-    let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
-
-    let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-
-    header.pinToVisibleBounds = true
-    layoutSection.boundarySupplementaryItems = [header]
-
-    return layoutSection
+    return listLayout
   }
 }
 
@@ -282,6 +260,49 @@ private extension MainViewController {
       StorageManagerRealm.shared.save(realmCameras)
       completion()
     }
+  }
+}
+
+//MARK: - Alert Controller
+
+extension UIAlertController {
+
+  static func createAlert(withTitle title: String, andMessage message: String) -> UIAlertController {
+    UIAlertController(title: title, message: message, preferredStyle: .alert)
+  }
+
+  func cameraAction(camera: RealmCameraInfo?, completion: @escaping(String) -> Void) {
+    let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+      guard let textValue = self.textFields?.first?.text, !textValue.isEmpty else {
+        return
+      }
+      completion(textValue)
+    }
+
+    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+
+    addAction(saveAction)
+    addAction(cancelAction)
+    addTextField { textField in
+      textField.placeholder = "Enter camera name"
+      textField.text = camera?.name
+    }
+  }
+
+}
+
+extension MainViewController {
+
+  private func showAlert(camera: RealmCameraInfo?, completion: (() -> Void)?) {
+    let alert = UIAlertController.createAlert(withTitle: "Editing the camera name", andMessage: "Enter a new camera name")
+
+    alert.cameraAction(camera: camera) { cameraName in
+      if let camera = camera, let completion = completion {
+        StorageManagerRealm.shared.rename(camera, newName: cameraName)
+        completion()
+      }
+    }
+    present(alert, animated: true)
   }
 }
 
