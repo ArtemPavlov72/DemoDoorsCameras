@@ -26,7 +26,7 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
     return view
   }()
 
-  private var backgroundColorView: UIView = {
+  private let backgroundColorView: UIView = {
     let view = UIView()
     view.backgroundColor = .white
     view.layer.cornerRadius = 15
@@ -50,37 +50,28 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
 
   func configure(with data: Any) {
     guard let data = data as? RealmCameraInfo else { return }
-    cameraImage.fetchImage(from: data.snapshot)
-   // getImage(from: data.snapshot)
     cameraName.text = data.name
-  }
-
-  private func getImage(from url: String?) {
-    DispatchQueue.global().async {
-      guard let imageData = ImageManager.shared.loadImage(from: url) else {return}
-      DispatchQueue.main.async {
-        self.cameraImage.image = UIImage(data: imageData)
-      }
-    }
+    cameraImage.fetchImage(from: data.snapshot ?? "")
   }
 
   // MARK: - Setup Constraints
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-      backgroundColorView.topAnchor.constraint(equalTo: self.topAnchor),
+      backgroundColorView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
       backgroundColorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
       backgroundColorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-      backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+      backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
 
       cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
       cameraImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
+      cameraImage.heightAnchor.constraint(equalToConstant: 330),
 
       cameraName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       cameraName.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16),
       cameraName.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20)
-      ])
+    ])
   }
 }

@@ -47,11 +47,6 @@ class ImageManager {
   static let shared = ImageManager()
   private init() {}
   
-  func loadImage(from url: String?) -> Data? {
-    guard let imageURL = URL(string: url ?? "") else {return nil}
-    return try? Data(contentsOf: imageURL)
-  }
-
   func loadImageWithCache(from url: URL, completion: @escaping(Data, URLResponse) -> Void) {
       URLSession.shared.dataTask(with: url) { data, response, error in
           guard let data = data, let response = response else {

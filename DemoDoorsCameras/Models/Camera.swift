@@ -2,7 +2,7 @@
 //  Camera.swift
 //  DemoDoorsCameras
 //
-//  Created by Артем Павлов on 03.08.2023.
+//  Created by Artem Pavlov on 03.08.2023.
 //
 
 import RealmSwift
@@ -21,7 +21,7 @@ struct CameraData: Codable, Hashable {
 
 struct CameraInfo: Codable, Hashable {
   let name: String
-  let snapshot: String
+  let snapshot: String?
   let room: String?
   let id: Int
   let favorites: Bool
@@ -32,7 +32,7 @@ struct CameraInfo: Codable, Hashable {
 
 class RealmCameraInfo: Object {
   @Persisted var name: String
-  @Persisted var snapshot: String
+  @Persisted var snapshot: String?
   @Persisted var room: String?
   @Persisted var id: Int
   @Persisted var favorites: Bool

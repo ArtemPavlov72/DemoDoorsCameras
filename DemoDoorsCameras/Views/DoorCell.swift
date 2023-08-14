@@ -18,7 +18,7 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
   private let doorName = UILabel()
   private let lockImage = UIImageView()
 
-  private lazy var cameraImage: ImageView = {
+  private lazy var doorImage: ImageView = {
     let view = ImageView()
     view.contentMode = .scaleAspectFill
     view.clipsToBounds = true
@@ -38,8 +38,8 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupElements(backgroundColorView, cameraImage, doorName, lockImage)
-    setupSubViews(backgroundColorView, cameraImage, doorName, lockImage)
+    setupElements(backgroundColorView, doorImage, doorName, lockImage)
+    setupSubViews(backgroundColorView, doorImage, doorName, lockImage)
     setupConstraints()
   }
 
@@ -53,22 +53,23 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
     guard let data = data as? RealmDoorInfo else { return }
     doorName.text = data.name
     lockImage.image = UIImage(named: "lockImage")
-    cameraImage.fetchImage(from: data.snapshot ?? "")
+    doorImage.fetchImage(from: data.snapshot ?? "")
   }
 
   // MARK: - Setup Constraints
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-      backgroundColorView.topAnchor.constraint(equalTo: self.topAnchor),
+      backgroundColorView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
       backgroundColorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
       backgroundColorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-      backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+      backgroundColorView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
 
-      cameraImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
-      cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
-      cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
-      cameraImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
+      doorImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor),
+      doorImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
+      doorImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
+      doorImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
+      doorImage.heightAnchor.constraint(lessThanOrEqualToConstant: 330),
 
       doorName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       doorName.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20),
@@ -76,7 +77,7 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
       lockImage.heightAnchor.constraint(equalToConstant: 30),
       lockImage.widthAnchor.constraint(equalToConstant: 30),
       lockImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16),
-      lockImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20),
-      ])
+      lockImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20)
+    ])
   }
 }

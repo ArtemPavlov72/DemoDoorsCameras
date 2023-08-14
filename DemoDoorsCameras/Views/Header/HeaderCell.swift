@@ -2,7 +2,7 @@
 //  HeaderCell.swift
 //  DemoDoorsCameras
 //
-//  Created by Артем Павлов on 04.08.2023.
+//  Created by Artem Pavlov on 04.08.2023.
 //
 
 import UIKit
@@ -53,6 +53,7 @@ class HeaderCell: UICollectionViewCell {
     categoryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
     categoryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 
+//    bottomView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 5),
     bottomView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
     bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
     bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor),

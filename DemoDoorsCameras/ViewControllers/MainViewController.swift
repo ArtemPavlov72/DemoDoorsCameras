@@ -89,10 +89,10 @@ class MainViewController: UIViewController {
       switch sections {
       case .mainData:
         if categoryIndex == 0 {
-          let camera = realmCamerasResults?[indexPath.row]
+          let camera = realmCamerasResults?[indexPath.item]
           return configure(CameraCell.self, with: camera, for: indexPath)
         } else {
-          let door = realmDoorsResults?[indexPath.row]
+          let door = realmDoorsResults?[indexPath.item]
           return configure(DoorCell.self, with: door, for: indexPath)
         }
       }
@@ -127,19 +127,28 @@ class MainViewController: UIViewController {
 
   private func createCompositionalLayout() -> UICollectionViewLayout {
 
-    var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+    var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
     listConfiguration.headerMode = .supplementary
     listConfiguration.trailingSwipeActionsConfigurationProvider = { indexPath in
 
-      let editAction = UIContextualAction(style: .normal, title: "Edit") { _, _, isDone in
+      let editAction = UIContextualAction(style: .normal, title: "") { _, _, isDone in
         if self.categoryIndex == 0 {
           let camera = self.realmCamerasResults?[indexPath.row]
-          self.showAlert(camera: camera) {
-
+          self.showCameraAlert(camera: camera) {
+            self.collectionView.reloadData()
           }
-          isDone(true)
+        } else {
+          let door = self.realmDoorsResults?[indexPath.row]
+          self.showDoorAlert(door: door) {
+            self.collectionView.reloadData()
+          }
         }
+        isDone(true)
       }
+
+      editAction.backgroundColor = .systemGray6
+      editAction.image = UIImage(named: "editImage")
+      
       return UISwipeActionsConfiguration(actions: [editAction])
     }
 
@@ -170,7 +179,7 @@ extension MainViewController: MainViewControllerDelegate {
 
 private extension MainViewController {
 
-  private func getDoorData() {
+  func getDoorData() {
     guard let doorsData = realmDoorsResults else { return }
 
     if doorsData.isEmpty {
@@ -210,6 +219,7 @@ private extension MainViewController {
     DispatchQueue.main.async {
       StorageManagerRealm.shared.save(realmDoors)
       completion()
+
     }
   }
 }
@@ -263,37 +273,13 @@ private extension MainViewController {
   }
 }
 
-//MARK: - Alert Controller
-
-extension UIAlertController {
-
-  static func createAlert(withTitle title: String, andMessage message: String) -> UIAlertController {
-    UIAlertController(title: title, message: message, preferredStyle: .alert)
-  }
-
-  func cameraAction(camera: RealmCameraInfo?, completion: @escaping(String) -> Void) {
-    let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-      guard let textValue = self.textFields?.first?.text, !textValue.isEmpty else {
-        return
-      }
-      completion(textValue)
-    }
-
-    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-
-    addAction(saveAction)
-    addAction(cancelAction)
-    addTextField { textField in
-      textField.placeholder = "Enter camera name"
-      textField.text = camera?.name
-    }
-  }
-
-}
+//MARK: - Alert
 
 extension MainViewController {
 
-  private func showAlert(camera: RealmCameraInfo?, completion: (() -> Void)?) {
+// change to one method
+
+  private func showCameraAlert(camera: RealmCameraInfo?, completion: (() -> Void)?) {
     let alert = UIAlertController.createAlert(withTitle: "Editing the camera name", andMessage: "Enter a new camera name")
 
     alert.cameraAction(camera: camera) { cameraName in
@@ -304,5 +290,16 @@ extension MainViewController {
     }
     present(alert, animated: true)
   }
-}
 
+  private func showDoorAlert(door: RealmDoorInfo?, completion: (() -> Void)?) {
+    let alert = UIAlertController.createAlert(withTitle: "Editing the door name", andMessage: "Enter a new door name")
+
+    alert.doorAction(door: door) { doorName in
+      if let camera = door, let completion = completion {
+        StorageManagerRealm.shared.rename(camera, newName: doorName)
+        completion()
+      }
+    }
+    present(alert, animated: true)
+  }
+}
