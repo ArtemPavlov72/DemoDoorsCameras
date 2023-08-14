@@ -33,6 +33,7 @@ class MainViewController: UIViewController {
     getCategoryData()
     setupCollectionView()
     loadSelectedCategory(catery: categoryIndex)
+    setupRefreshControl()
   }
 
   //MARK: - Private Methods
@@ -69,6 +70,22 @@ class MainViewController: UIViewController {
       getDoorData()
     }
   }
+
+  private func setupRefreshControl() {
+    collectionView.refreshControl = UIRefreshControl()
+    collectionView.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+    collectionView.refreshControl?.addTarget(self, action: #selector(loadDataRC), for: .valueChanged)
+  }
+
+  @objc private func loadDataRC() {
+    loadSelectedCategory(catery: categoryIndex)
+
+    if collectionView.refreshControl != nil {
+      collectionView.refreshControl?.endRefreshing()
+    }
+  }
+
+
 
   // MARK: - Manage the Data
 
@@ -232,7 +249,7 @@ private extension MainViewController {
 private extension MainViewController {
 
   func getCameraData() {
-    guard let camerasData = realmCamerasResults?.sorted() else { return }
+    guard let camerasData = realmCamerasResults else { return }
 
     if camerasData.isEmpty {
       loadCameraData()
