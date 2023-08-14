@@ -69,7 +69,7 @@ class DoorCell: UICollectionViewCell, SelfConfiguringCell {
       doorImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       doorImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
       doorImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
-      doorImage.heightAnchor.constraint(lessThanOrEqualToConstant: 330),
+      doorImage.heightAnchor.constraint(lessThanOrEqualToConstant: 280),
 
       doorName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       doorName.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -20),

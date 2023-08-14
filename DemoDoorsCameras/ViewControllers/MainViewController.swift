@@ -103,6 +103,7 @@ class MainViewController: UIViewController {
       sectionHeader.categories = Array(NSOrderedSet(array: self.categories.compactMap {
         $0.categoryName
       } )) as? [String] ?? []
+      sectionHeader.heightAnchor.constraint(equalToConstant: 40).isActive = true
       sectionHeader.delegate = self
       return sectionHeader
     }
@@ -115,7 +116,7 @@ class MainViewController: UIViewController {
 
     snapshot.appendSections([Section.mainData])
     if categoryIndex == 0 {
-      snapshot.appendItems(realmCamerasResults?.shuffled() ?? [], toSection: .mainData)
+      snapshot.appendItems(realmCamerasResults?.sorted(by: >) ?? [], toSection: .mainData)
     } else {
       snapshot.appendItems(realmDoorsResults?.shuffled() ?? [], toSection: .mainData)
     }
@@ -128,6 +129,7 @@ class MainViewController: UIViewController {
   private func createCompositionalLayout() -> UICollectionViewLayout {
 
     var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+    listConfiguration.headerTopPadding = 10
     listConfiguration.headerMode = .supplementary
     listConfiguration.trailingSwipeActionsConfigurationProvider = { indexPath in
 
@@ -153,6 +155,7 @@ class MainViewController: UIViewController {
     }
 
     let listLayout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
+    listLayout.configuration.contentInsetsReference = .safeArea
 
     return listLayout
   }
@@ -229,7 +232,7 @@ private extension MainViewController {
 private extension MainViewController {
 
   func getCameraData() {
-    guard let camerasData = realmCamerasResults else { return }
+    guard let camerasData = realmCamerasResults?.sorted() else { return }
 
     if camerasData.isEmpty {
       loadCameraData()

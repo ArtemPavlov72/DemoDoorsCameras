@@ -53,7 +53,6 @@ class HeaderCell: UICollectionViewCell {
     categoryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
     categoryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 
-//    bottomView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 5),
     bottomView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
     bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
     bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor),

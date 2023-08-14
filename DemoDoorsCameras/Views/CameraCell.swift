@@ -16,6 +16,8 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
   //MARK: - Private Properties
 
   private let cameraName = UILabel()
+  private let recImage = UIImageView()
+  private let favoriteImage = UIImageView()
 
   private lazy var cameraImage: ImageView = {
     let view = ImageView()
@@ -37,8 +39,8 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupElements(backgroundColorView, cameraImage, cameraName)
-    setupSubViews(backgroundColorView, cameraImage, cameraName)
+    setupElements(backgroundColorView, cameraImage, recImage, favoriteImage, cameraName)
+    setupSubViews(backgroundColorView, cameraImage, recImage, favoriteImage, cameraName)
     setupConstraints()
   }
 
@@ -51,7 +53,15 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
   func configure(with data: Any) {
     guard let data = data as? RealmCameraInfo else { return }
     cameraName.text = data.name
-    cameraImage.fetchImage(from: data.snapshot ?? "")
+    if data.rec {
+      recImage.image = UIImage(named: "recImage")
+    }
+    print("camera \(data.name) - - \(data.rec)")
+    if data.favorites {
+      favoriteImage.image = UIImage(named: "starImage")
+
+      cameraImage.fetchImage(from: data.snapshot ?? "")
+    }
   }
 
   // MARK: - Setup Constraints
@@ -67,7 +77,17 @@ class CameraCell: UICollectionViewCell, SelfConfiguringCell {
       cameraImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor),
       cameraImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor),
       cameraImage.bottomAnchor.constraint(equalTo: backgroundColorView.bottomAnchor, constant: -60),
-      cameraImage.heightAnchor.constraint(equalToConstant: 330),
+      cameraImage.heightAnchor.constraint(equalToConstant: 280),
+
+      recImage.heightAnchor.constraint(equalToConstant: 40),
+      recImage.widthAnchor.constraint(equalToConstant: 40),
+      recImage.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 5),
+      recImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor, constant: 5),
+
+      favoriteImage.heightAnchor.constraint(equalToConstant: 30),
+      favoriteImage.widthAnchor.constraint(equalToConstant: 30),
+      favoriteImage.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -5),
+      favoriteImage.topAnchor.constraint(equalTo: backgroundColorView.topAnchor, constant: 5),
 
       cameraName.leadingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: 16),
       cameraName.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16),

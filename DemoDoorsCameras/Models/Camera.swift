@@ -30,7 +30,11 @@ struct CameraInfo: Codable, Hashable {
 
 //MARK: - Realm models
 
-class RealmCameraInfo: Object {
+class RealmCameraInfo: Object, Comparable {
+  static func < (lhs: RealmCameraInfo, rhs: RealmCameraInfo) -> Bool {
+    lhs.id > rhs.id
+  }
+
   @Persisted var name: String
   @Persisted var snapshot: String?
   @Persisted var room: String?
